@@ -1,7 +1,7 @@
 # jellyfin-scripts
 
 ### -- jellyfin-library-metadata-cleanup.sh --
-This script is meant for those that store metadata alongside their Jellyfin media libraies.
+This script is meant for those that store metadata alongside their Jellyfin media libraries.
 
 This will find and delete all left-over jpg thumbnails and trickplay related files (.bif, -manifest.json) that no longer have an accompanying video file.
 The script by default will look through three libraries. Modify the path name variables on top of the script to get it working for your server.
