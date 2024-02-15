@@ -1,6 +1,8 @@
 # jellyfin-scripts
 
 ### -- jellyfin-library-metadata-cleanup.sh --
+This script is meant for those that store metadata alongside their Jellyfin media libraies.
+
 This will find and delete all left-over jpg thumbnails and trickplay related files (.bif, -manifest.json) that no longer have an accompanying video file.
 The script by default will look through three libraries. Modify the path name variables on top of the script to get it working for your server.
 
@@ -14,3 +16,50 @@ Change both if you're modyfing one to make the script consistent with all the bu
 The script shouldn't delete anything that's not a .jpg, .bif, or -manifest.json file. However, just in case any other file type gets deleted, the script will output that an "incorrect" file has been deleted and won't work until the situation has been dealt with.
 
 All deletions are sent to a log as described in the script.
+
+```
+Notes on left-over detection:
+1. As the script is, it's meant to deal with metadata files that Jellyfin handled in naming.
+2. This script handles detection well when adding to video file names.
+3. This script doesn't handle well (won't detect) when you remove from video file names.
+
+As an example with six files:
+    EP1 [12345678].mkv
+    EP1 [12345678].jpg
+    EP1 [87654321].jpg
+    EP2 [12345678].mkv
+    EP2 [12345678].jpg
+    EP2.jpg
+results in these files remaining:
+    EP1 [12345678].mkv
+    EP1 [12345678].jpg
+    EP2 [12345678].mkv
+    EP2 [12345678].jpg
+
+However:
+    EP1.mkv
+    EP1.jpg
+    EP1 [87654321].jpg
+    EP2 [12345678]New.mkv
+    EP2 [12345678]New.jpg
+    EP2 [12345678].jpg
+results in these files remaining:
+    EP1.mkv
+    EP1.jpg
+    EP1 [87654321].jpg
+    EP2 [12345678]New.mkv
+    EP2 [12345678]New.jpg
+
+4. I also found that this scrip will not detect files that have a copy made by Windows.
+    detected ------> oldThumbnail.jpg
+    not detected --> oldThumbnail-Copy.jpg
+
+```
+
+Also, don't forget to link the correct paths in the script.
+### THIS SCRIPT WILL ERASE ALL JPG FILES THAT DON'T MATCH A VIDEO FILE NAME IN THE SAME LINKED DIRECTORIES.
+Don't lose your stored images by accident.
+
+Notes on why I created this:
+  - I manually delete files a lot on my server. I sometimes forget to delete the related metadata files that Jellyfin and Jellyscrub place in my libraries.
+  - These left-over metadata files are useless, take up space, and stick around forever unless I find and delete them.
