@@ -61,11 +61,12 @@ Also, don't forget to link the correct paths in the script.
 Don't lose your stored images by accident.
 
 The following list are jpg files that are excluded from being deleted:
-    1. folder.jpg
-    2. banner.jpg
-    3. backdrop.jpg
-    4. logo.jpg
-    5. cover.jpg
+- folder.jpg
+- banner.jpg
+- backdrop.jpg
+- logo.jpg
+- cover.jpg
+
 If your server has extra jpg files that are used for metadata purposes that don't match with this list, they will be deleted.
 You will have to modify the script to ignore other jpg metadata that you want to keep.
 
