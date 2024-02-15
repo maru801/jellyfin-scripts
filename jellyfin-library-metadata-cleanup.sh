@@ -17,6 +17,8 @@ library3Name="Test3 Library"
 
 if [ "$1" == "-c" ]; then
     rm -f $scriptLogLocation
+elif [ "$1" == "-d" ]; then
+    cat $scriptLogLocation
 elif [ "$1" == "-h" ]; then
     if grep -s "removed " $scriptLogLocation | grep -svEi '.jpg|.bif|-manifest.json' -; then
         echo ""
@@ -83,6 +85,7 @@ else
         echo "[-h]: Hide non-error verbose output."
         echo "[-c]: Delete current \"removed-log.txt\" file, then exit script."
         echo "[-C]: Delete current \"removed-log.txt\" file AND run this script afterwards."
+        echo "[-d]: Print out the romoval log."
         echo "--Note: This script currently only supports one flag at a time.--"
         echo ""
         echo "--Script designed for \"$serverName\"--"
