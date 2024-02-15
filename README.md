@@ -60,7 +60,14 @@ Also, don't forget to link the correct paths in the script.
 ### THIS SCRIPT WILL ERASE ALL JPG FILES THAT DON'T MATCH A VIDEO FILE NAME IN THE SAME LINKED DIRECTORIES.
 Don't lose your stored images by accident.
 
-Except for thumbnail jpg files, the script will not delete any other jpg files that Jellyfin uses as metadata (folder, backdrop, cover, etc.).
+The following list are jpg files that are excluded from being deleted:
+    1. folder.jpg
+    2. banner.jpg
+    3. backdrop.jpg
+    4. logo.jpg
+    5. cover.jpg
+If your server has extra jpg files that are used for metadata purposes that don't match with this list, they will be deleted.
+You will have to modify the script to ignore other jpg metadata that you want to keep.
 
 Notes on why I created this:
   - I manually delete files a lot on my server. I sometimes forget to delete the related metadata files that Jellyfin and Jellyscrub place in my libraries.
