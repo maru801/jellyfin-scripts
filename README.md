@@ -19,40 +19,7 @@ All deletions are sent to a log as described in the script.
 
 ```
 Notes on left-over detection:
-1. As the script is, it's meant to deal with metadata files that Jellyfin handled in naming.
-2. This script handles detection well when adding to video file names.
-3. This script doesn't handle well (won't detect) when you remove from video file names.
-
-As an example with six files:
-    EP1 [12345678].mkv
-    EP1 [12345678].jpg
-    EP1 [87654321].jpg
-    EP2 [12345678].mkv
-    EP2 [12345678].jpg
-    EP2.jpg
-results in these files remaining:
-    EP1 [12345678].mkv
-    EP1 [12345678].jpg
-    EP2 [12345678].mkv
-    EP2 [12345678].jpg
-
-However:
-    EP1.mkv
-    EP1.jpg
-    EP1 [87654321].jpg
-    EP2 [12345678]New.mkv
-    EP2 [12345678]New.jpg
-    EP2 [12345678].jpg
-results in these files remaining:
-    EP1.mkv
-    EP1.jpg
-    EP1 [87654321].jpg
-    EP2 [12345678]New.mkv
-    EP2 [12345678]New.jpg
-
-4. I also found that this scrip will not detect files that have a copy made by Windows.
-    detected ------> oldThumbnail.jpg
-    not detected --> oldThumbnail-Copy.jpg
+1. As the script is, it's meant to deal with metadata files that Jellyfin & Jellyscrub handled in naming.
 
 ```
 
@@ -72,7 +39,7 @@ The following are files that are excluded from being deleted:
 If your server has extra jpg files that are used for metadata purposes that don't match with this list, they will be deleted.
 You will have to modify the script to ignore other jpg metadata that you want to keep.
 
-The main lines that contain the logic to edit the libraries are located at lines 50, 51, 52 (for -h flag, not-verbose output), and lines 142, 145, 148 (for all other verbose output).
+The main lines that contain the logic to edit the libraries are located at lines 50-57 (for -h flag, not-verbose output), and lines 148-149, 154-155, & 160-161 (for all other verbose output).
 
 Notes on why I created this:
   - I manually delete files a lot on my server. I sometimes forget to delete the related metadata files that Jellyfin and Jellyscrub place in my libraries.
