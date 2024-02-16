@@ -7,7 +7,7 @@ scriptLogLocation=test/removed-log.txt
 scriptTempLogLocation=test/temp-removed-log.txt
 
 # !!!IMPORTANT: Make sure paths end with "/"
-library1=tes1/
+library1=test1/
 library2=test2/
 library3=test3/
 
