@@ -70,6 +70,8 @@ The following list are jpg files that are excluded from being deleted:
 If your server has extra jpg files that are used for metadata purposes that don't match with this list, they will be deleted.
 You will have to modify the script to ignore other jpg metadata that you want to keep.
 
+The main lines that contain the logic to edit the libraries are located at lines 50, 51, 52 (for -h flag, not-verbose output), and lines 142, 145, 148 (for all other verbose output).
+
 Notes on why I created this:
   - I manually delete files a lot on my server. I sometimes forget to delete the related metadata files that Jellyfin and Jellyscrub place in my libraries.
   - These left-over metadata files are useless, take up space, and stick around forever unless I find and delete them.
