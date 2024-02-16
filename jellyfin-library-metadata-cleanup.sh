@@ -108,6 +108,9 @@ else
         echo ""
         echo "--Script designed for \"$serverName\"--"
 
+        echo "---Script made during Jellyfin v10.8.13 & Jellyscrub v1.1.1.0---"
+        echo "---Any future changes to automatic metadata naming by either service may break this script.---"
+        echo ""
         echo "This script expects the following paths to exist on the system:"
         echo "$scriptLogLocationPathOnly {Removal Log Storage Location}"
         echo "$library1 {$library1Name}"
