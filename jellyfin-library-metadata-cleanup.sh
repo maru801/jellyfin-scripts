@@ -16,6 +16,15 @@ library2Name="Test2 Library"
 library3Name="Test3 Library"
 
 if [ "$1" == "-c" ]; then
+    echo "Delete the removal log? Enter [Y] to delete..."
+    read userDeleteChoice
+
+    if [ "$userDeleteChoice" == "Y" ]; then
+        rm -f $scriptLogLocation
+    else
+        echo "...Deletion of Removal Log Aborted..."
+    fi
+elif [ "$1" == "-C" ]; then
     rm -f $scriptLogLocation
 elif [ "$1" == "-d" ]; then
     cat $scriptLogLocation
@@ -31,7 +40,7 @@ elif [ "$1" == "-h" ]; then
         echo "This script will not run until the incorrect file has been deleted from the removal log."
         echo "Please edit the removal log or delete it to get this script working again."
         echo ""
-        echo "---Detailed list of removed items is found in this file: $scriptLogLocation---"
+        echo ">>> Detailed list of removed items appeneded to this file: $scriptLogLocation <<<"
         echo "...Ending Script..."
     else
         echo "--------------------------------" >> $scriptTempLogLocation
@@ -62,7 +71,8 @@ elif [ "$1" == "-h" ]; then
             echo "This script will not run until the incorrect file has been deleted from the removal log."
             echo "Please edit the removal log or delete it to get this script working again."
             echo ""
-            echo "---Detailed list of removed items is found in this file: $scriptLogLocation---"
+            echo ">>> Detailed list of removed items appeneded to this file: $scriptLogLocation <<<"
+            echo ""
             echo "---Feel free to delete this log file for whatever reason (ex. log got too big, free up space).---"
             echo "---This log file will be recreated on the next launch of this script.---"
             echo "...Ending Script..."
@@ -78,14 +88,17 @@ else
         echo "This script will not run until the incorrect file has been deleted from the removal log."
         echo "Please edit the removal log or delete it to get this script working again."
         echo ""
-        echo "---Detailed list of removed items is found in this file: $scriptLogLocation---"
+        echo ">>> Detailed list of removed items appeneded to this file: $scriptLogLocation <<<"
+        echo ""
         echo "...Ending Script..."
     else
         echo "Start-up Flags (Use at Runtime):"
-        echo "[-h]: Hide non-error verbose output."
-        echo "[-c]: Delete current \"removed-log.txt\" file, then exit script."
-        echo "[-C]: Delete current \"removed-log.txt\" file AND run this script afterwards."
+        echo "[-c]: Delete the current removal log file."
+        echo "[-C]: Force delete the current removal log file."
+        echo "[-x]: Delete the current removal log file AND run the script after."
+        echo "[-X]: Force delete the current removal log file AND run the script after."
         echo "[-d]: Print out the romoval log."
+        echo "[-h]: Hide non-error verbose output."
         echo "--Note: This script currently only supports one flag at a time.--"
         echo ""
         echo "--Script designed for \"$serverName\"--"
@@ -103,14 +116,24 @@ else
         echo "The user running this script needs to have the correct permissions set to access all three libraries and delete files."
         echo ""
 
-        echo "---Continue?---"
-        echo "[To Cancel: Enter Anything]"
-        echo "[To Continue: Enter Nothing]"
+        echo "---Enter [Y] to Proceed---"
         read userExitChoice
 
-        if [[ $userExitChoice == "" || $userExitChoice == "" ]]; then
-            if [ "$1" == "-C" ]; then
+        if [ "$userExitChoice" == "Y" ]; then
+            if [ "$1" == "-x" ]; then
+                echo "Delete the removal log? Enter [Y] to delete..."
+                read userDeleteChoice
+
+                if [ "$userDeleteChoice" == "Y" ]; then
+                    rm -f $scriptLogLocation
+                    echo ""
+                else
+                    echo "...Deletion of Removal Log Aborted..."
+                    echo ""
+                fi
+            elif [ "$1" == "-X" ]; then
                 rm -f $scriptLogLocation
+                echo ""
             fi
 
             echo "--------------------------------" >> $scriptTempLogLocation
@@ -146,14 +169,15 @@ else
                 echo "This script will not run until the incorrect file has been deleted from the removal log."
                 echo "Please edit the removal log or delete it to get this script working again."
                 echo ""
-                echo "---Detailed list of removed items was appeneded to the end of this file: $scriptLogLocation---"
+                echo ">>> Detailed list of removed items appeneded to this file: $scriptLogLocation <<<"
                 echo "---Feel free to delete this log file for whatever reason (ex. log got too big, free up space).---"
                 echo "---This log file will be recreated on the next launch of this script.---"
             else 
                 echo ""
                 echo "Note: If \"rm -vf\" is followed by nothing, nothing was erased from that library (no leftover metadata was found)."
                 echo ""
-                echo "---Detailed list of removed items (if any) was appeneded to the end of this file: $scriptLogLocation---"
+                echo ">>> Detailed list of removed items (if any) appeneded to this file: $scriptLogLocation <<<"
+                echo ""
                 echo "---Feel free to delete this log file for whatever reason (ex. log got too big, free up space).---"
                 echo "---This log file will be recreated on the next launch of this script (only when a removal occurs).---"
                 echo "...Ending Script..."
