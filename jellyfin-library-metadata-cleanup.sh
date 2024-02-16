@@ -104,7 +104,7 @@ else
         echo "--Script designed for \"$serverName\"--"
 
         echo "This script expects the following paths to exist on the system:"
-        echo "$scriptLogLocationPathOnly {Location of this Script}"
+        echo "$scriptLogLocationPathOnly {Removal Log Storage Location}"
         echo "$library1 {$library1Name}"
         echo "$library2 {$library2Name}"
         echo "$library3 {$library3Name}"
@@ -126,20 +126,18 @@ else
 
                 if [ "$userDeleteChoice" == "Y" ]; then
                     rm -f $scriptLogLocation
-                    echo ""
                 else
                     echo "...Deletion of Removal Log Aborted..."
-                    echo ""
                 fi
             elif [ "$1" == "-X" ]; then
                 rm -f $scriptLogLocation
-                echo ""
             fi
 
             echo "--------------------------------" >> $scriptTempLogLocation
             date >> $scriptTempLogLocation
             echo "--------------------------------" >> $scriptTempLogLocation
 
+            echo ""
             echo "-----Cleaning $library1Name (rm uneeded .jpg + .bif + -manifest.json files)-----"
             grep -vf <(find $library1* -type f \( -iname "*.mkv" -o -iname "*.mk3d" -o -iname "*.mp4" -o -iname "*.m4v" -o -iname "*.mov" -o -iname "*.qt" -o -iname "*.asf" -o -iname "*.wmv" -o -iname "*.avi" -o -iname "*.mxf" -o -iname "*.m2p" -o -iname "*.ps" -o -iname "*.ts" -o -iname "*.tsv" -o -iname "*.m2ts" -o -iname "*.mts" -o -iname "*.vob" -o -iname "*.evo" -o -iname "*.3gp" -o -iname "*.3g2" -o -iname "*.f4v" -o -iname "*.flv" -o -iname "*.ogv" -o -iname "*.ogx" -o -iname "*.webm" -o -iname "*.rmvb" -o -iname "*.divx" -o -iname "*.xvid" \) -exec basename {} \; | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | sed 's/\.[^.]*$//gm') <(find $library1* -type f \( -name "*.jpg" -o -name "*.bif" -o -name "*-manifest.json" \) | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | grep -vEi 'folder.jpg|banner.jpg|backdrop.jpg|logo.jpg|cover.jpg' -) | sed 's/-I1L2B-/\\[/g' | sed 's/-I1R2B-/\\]/g' | sed 's/ /\\ /g' | xargs -t rm -vf >> $scriptTempLogLocation
             echo ""
