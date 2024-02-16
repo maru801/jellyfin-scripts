@@ -60,12 +60,14 @@ Also, don't forget to link the correct paths in the script.
 ### THIS SCRIPT WILL ERASE ALL JPG FILES THAT DON'T MATCH A VIDEO FILE NAME IN THE SAME LINKED DIRECTORIES.
 Don't lose your stored images by accident.
 
-The following list are jpg files that are excluded from being deleted:
+The following are files that are excluded from being deleted:
 - folder.jpg
 - banner.jpg
 - backdrop.jpg
 - logo.jpg
 - cover.jpg
+- tvshow.nfo
+- season.nfo
 
 If your server has extra jpg files that are used for metadata purposes that don't match with this list, they will be deleted.
 You will have to modify the script to ignore other jpg metadata that you want to keep.

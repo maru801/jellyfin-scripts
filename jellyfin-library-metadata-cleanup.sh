@@ -29,7 +29,7 @@ elif [ "$1" == "-C" ]; then
 elif [ "$1" == "-d" ]; then
     cat $scriptLogLocation
 elif [ "$1" == "-h" ]; then
-    if grep -s "removed " $scriptLogLocation | grep -svEi '.jpg|.bif|-manifest.json' -; then
+    if grep -s "removed " $scriptLogLocation | grep -svEi '.jpg|.bif|-manifest.json|.nfo' -; then
         echo ""
         echo "jellyfin-library-metadata-cleanup.sh"
         echo "!!!---WARNING---!!!"
@@ -47,9 +47,9 @@ elif [ "$1" == "-h" ]; then
         date >> $scriptTempLogLocation
         echo "--------------------------------" >> $scriptTempLogLocation
 
-        grep -vf <(find $library1* -type f \( -iname "*.mkv" -o -iname "*.mk3d" -o -iname "*.mp4" -o -iname "*.m4v" -o -iname "*.mov" -o -iname "*.qt" -o -iname "*.asf" -o -iname "*.wmv" -o -iname "*.avi" -o -iname "*.mxf" -o -iname "*.m2p" -o -iname "*.ps" -o -iname "*.ts" -o -iname "*.tsv" -o -iname "*.m2ts" -o -iname "*.mts" -o -iname "*.vob" -o -iname "*.evo" -o -iname "*.3gp" -o -iname "*.3g2" -o -iname "*.f4v" -o -iname "*.flv" -o -iname "*.ogv" -o -iname "*.ogx" -o -iname "*.webm" -o -iname "*.rmvb" -o -iname "*.divx" -o -iname "*.xvid" \) -exec basename {} \; | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | sed 's/\.[^.]*$//gm') <(find $library1* -type f \( -name "*.jpg" -o -name "*.bif" -o -name "*-manifest.json" \) | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | grep -vEi 'folder.jpg|banner.jpg|backdrop.jpg|logo.jpg|cover.jpg' -) | sed 's/-I1L2B-/\\[/g' | sed 's/-I1R2B-/\\]/g' | sed 's/ /\\ /g' | xargs rm -vf >> $scriptTempLogLocation
-        grep -vf <(find $library2* -type f \( -iname "*.mkv" -o -iname "*.mk3d" -o -iname "*.mp4" -o -iname "*.m4v" -o -iname "*.mov" -o -iname "*.qt" -o -iname "*.asf" -o -iname "*.wmv" -o -iname "*.avi" -o -iname "*.mxf" -o -iname "*.m2p" -o -iname "*.ps" -o -iname "*.ts" -o -iname "*.tsv" -o -iname "*.m2ts" -o -iname "*.mts" -o -iname "*.vob" -o -iname "*.evo" -o -iname "*.3gp" -o -iname "*.3g2" -o -iname "*.f4v" -o -iname "*.flv" -o -iname "*.ogv" -o -iname "*.ogx" -o -iname "*.webm" -o -iname "*.rmvb" -o -iname "*.divx" -o -iname "*.xvid" \) -exec basename {} \; | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | sed 's/\.[^.]*$//gm') <(find $library2* -type f \( -name "*.jpg" -o -name "*.bif" -o -name "*-manifest.json" \) | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | grep -vEi 'folder.jpg|banner.jpg|backdrop.jpg|logo.jpg|cover.jpg' -) | sed 's/-I1L2B-/\\[/g' | sed 's/-I1R2B-/\\]/g' | sed 's/ /\\ /g' | xargs rm -vf >> $scriptTempLogLocation
-        grep -vf <(find $library3* -type f \( -iname "*.mkv" -o -iname "*.mk3d" -o -iname "*.mp4" -o -iname "*.m4v" -o -iname "*.mov" -o -iname "*.qt" -o -iname "*.asf" -o -iname "*.wmv" -o -iname "*.avi" -o -iname "*.mxf" -o -iname "*.m2p" -o -iname "*.ps" -o -iname "*.ts" -o -iname "*.tsv" -o -iname "*.m2ts" -o -iname "*.mts" -o -iname "*.vob" -o -iname "*.evo" -o -iname "*.3gp" -o -iname "*.3g2" -o -iname "*.f4v" -o -iname "*.flv" -o -iname "*.ogv" -o -iname "*.ogx" -o -iname "*.webm" -o -iname "*.rmvb" -o -iname "*.divx" -o -iname "*.xvid" \) -exec basename {} \; | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | sed 's/\.[^.]*$//gm') <(find $library3* -type f \( -name "*.jpg" -o -name "*.bif" -o -name "*-manifest.json" \) | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | grep -vEi 'folder.jpg|banner.jpg|backdrop.jpg|logo.jpg|cover.jpg' -) | sed 's/-I1L2B-/\\[/g' | sed 's/-I1R2B-/\\]/g' | sed 's/ /\\ /g' | xargs rm -vf >> $scriptTempLogLocation
+        grep -vf <(find $library1* -type f \( -iname "*.mkv" -o -iname "*.mk3d" -o -iname "*.mp4" -o -iname "*.m4v" -o -iname "*.mov" -o -iname "*.qt" -o -iname "*.asf" -o -iname "*.wmv" -o -iname "*.avi" -o -iname "*.mxf" -o -iname "*.m2p" -o -iname "*.ps" -o -iname "*.ts" -o -iname "*.tsv" -o -iname "*.m2ts" -o -iname "*.mts" -o -iname "*.vob" -o -iname "*.evo" -o -iname "*.3gp" -o -iname "*.3g2" -o -iname "*.f4v" -o -iname "*.flv" -o -iname "*.ogv" -o -iname "*.ogx" -o -iname "*.webm" -o -iname "*.rmvb" -o -iname "*.divx" -o -iname "*.xvid" \) -exec basename {} \; | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | sed 's/\.[^.]*$//gm') <(find $library1* -type f \( -name "*.jpg" -o -name "*.bif" -o -name "*-manifest.json" -o -name "*.nfo" \) | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | grep -vEi 'folder.jpg|banner.jpg|backdrop.jpg|logo.jpg|cover.jpg|tvshow.nfo|season.nfo' -) | sed 's/-I1L2B-/\\[/g' | sed 's/-I1R2B-/\\]/g' | sed 's/ /\\ /g' | xargs rm -vf >> $scriptTempLogLocation
+        grep -vf <(find $library2* -type f \( -iname "*.mkv" -o -iname "*.mk3d" -o -iname "*.mp4" -o -iname "*.m4v" -o -iname "*.mov" -o -iname "*.qt" -o -iname "*.asf" -o -iname "*.wmv" -o -iname "*.avi" -o -iname "*.mxf" -o -iname "*.m2p" -o -iname "*.ps" -o -iname "*.ts" -o -iname "*.tsv" -o -iname "*.m2ts" -o -iname "*.mts" -o -iname "*.vob" -o -iname "*.evo" -o -iname "*.3gp" -o -iname "*.3g2" -o -iname "*.f4v" -o -iname "*.flv" -o -iname "*.ogv" -o -iname "*.ogx" -o -iname "*.webm" -o -iname "*.rmvb" -o -iname "*.divx" -o -iname "*.xvid" \) -exec basename {} \; | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | sed 's/\.[^.]*$//gm') <(find $library2* -type f \( -name "*.jpg" -o -name "*.bif" -o -name "*-manifest.json" -o -name "*.nfo" \) | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | grep -vEi 'folder.jpg|banner.jpg|backdrop.jpg|logo.jpg|cover.jpg|tvshow.nfo|season.nfo' -) | sed 's/-I1L2B-/\\[/g' | sed 's/-I1R2B-/\\]/g' | sed 's/ /\\ /g' | xargs rm -vf >> $scriptTempLogLocation
+        grep -vf <(find $library3* -type f \( -iname "*.mkv" -o -iname "*.mk3d" -o -iname "*.mp4" -o -iname "*.m4v" -o -iname "*.mov" -o -iname "*.qt" -o -iname "*.asf" -o -iname "*.wmv" -o -iname "*.avi" -o -iname "*.mxf" -o -iname "*.m2p" -o -iname "*.ps" -o -iname "*.ts" -o -iname "*.tsv" -o -iname "*.m2ts" -o -iname "*.mts" -o -iname "*.vob" -o -iname "*.evo" -o -iname "*.3gp" -o -iname "*.3g2" -o -iname "*.f4v" -o -iname "*.flv" -o -iname "*.ogv" -o -iname "*.ogx" -o -iname "*.webm" -o -iname "*.rmvb" -o -iname "*.divx" -o -iname "*.xvid" \) -exec basename {} \; | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | sed 's/\.[^.]*$//gm') <(find $library3* -type f \( -name "*.jpg" -o -name "*.bif" -o -name "*-manifest.json" -o -name "*.nfo" \) | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | grep -vEi 'folder.jpg|banner.jpg|backdrop.jpg|logo.jpg|cover.jpg|tvshow.nfo|season.nfo' -) | sed 's/-I1L2B-/\\[/g' | sed 's/-I1R2B-/\\]/g' | sed 's/ /\\ /g' | xargs rm -vf >> $scriptTempLogLocation
 
         echo "" >> $scriptTempLogLocation
         echo "" >> $scriptTempLogLocation
@@ -60,7 +60,7 @@ elif [ "$1" == "-h" ]; then
 
         rm $scriptTempLogLocation
 
-        if grep -s "removed " $scriptLogLocation | grep -svEi '.jpg|.bif|-manifest.json' -; then
+        if grep -s "removed " $scriptLogLocation | grep -svEi '.jpg|.bif|-manifest.json|.nfo' -; then
             echo ""
             echo "jellyfin-library-metadata-cleanup.sh"
             echo "!!!---WARNING---!!!"
@@ -79,7 +79,7 @@ elif [ "$1" == "-h" ]; then
         fi
     fi
 else
-    if grep -s "removed " $scriptLogLocation | grep -svEi '.jpg|.bif|-manifest.json' -; then
+    if grep -s "removed " $scriptLogLocation | grep -svEi '.jpg|.bif|-manifest.json|.nfo' -; then
         echo "!!!---WARNING---!!!"
         echo "Incorrect file removal has been detected from the removal log!"
         echo "Check removal log for more info of when this occured."
@@ -111,7 +111,7 @@ else
 
         echo ""
 
-        echo "This bash script will delete leftover jpg thumbnails and trickplay related files from the linked libraries in the script."
+        echo "This bash script will delete leftover nfo, jpg thumbnails, and trickplay related files from the linked libraries in the script."
         echo ""
         echo "The user running this script needs to have the correct permissions set to access all three libraries and delete files."
         echo ""
@@ -139,13 +139,13 @@ else
 
             echo ""
             echo "-----Cleaning $library1Name (rm uneeded .jpg + .bif + -manifest.json files)-----"
-            grep -vf <(find $library1* -type f \( -iname "*.mkv" -o -iname "*.mk3d" -o -iname "*.mp4" -o -iname "*.m4v" -o -iname "*.mov" -o -iname "*.qt" -o -iname "*.asf" -o -iname "*.wmv" -o -iname "*.avi" -o -iname "*.mxf" -o -iname "*.m2p" -o -iname "*.ps" -o -iname "*.ts" -o -iname "*.tsv" -o -iname "*.m2ts" -o -iname "*.mts" -o -iname "*.vob" -o -iname "*.evo" -o -iname "*.3gp" -o -iname "*.3g2" -o -iname "*.f4v" -o -iname "*.flv" -o -iname "*.ogv" -o -iname "*.ogx" -o -iname "*.webm" -o -iname "*.rmvb" -o -iname "*.divx" -o -iname "*.xvid" \) -exec basename {} \; | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | sed 's/\.[^.]*$//gm') <(find $library1* -type f \( -name "*.jpg" -o -name "*.bif" -o -name "*-manifest.json" \) | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | grep -vEi 'folder.jpg|banner.jpg|backdrop.jpg|logo.jpg|cover.jpg' -) | sed 's/-I1L2B-/\\[/g' | sed 's/-I1R2B-/\\]/g' | sed 's/ /\\ /g' | xargs -t rm -vf >> $scriptTempLogLocation
+            grep -vf <(find $library1* -type f \( -iname "*.mkv" -o -iname "*.mk3d" -o -iname "*.mp4" -o -iname "*.m4v" -o -iname "*.mov" -o -iname "*.qt" -o -iname "*.asf" -o -iname "*.wmv" -o -iname "*.avi" -o -iname "*.mxf" -o -iname "*.m2p" -o -iname "*.ps" -o -iname "*.ts" -o -iname "*.tsv" -o -iname "*.m2ts" -o -iname "*.mts" -o -iname "*.vob" -o -iname "*.evo" -o -iname "*.3gp" -o -iname "*.3g2" -o -iname "*.f4v" -o -iname "*.flv" -o -iname "*.ogv" -o -iname "*.ogx" -o -iname "*.webm" -o -iname "*.rmvb" -o -iname "*.divx" -o -iname "*.xvid" \) -exec basename {} \; | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | sed 's/\.[^.]*$//gm') <(find $library1* -type f \( -name "*.jpg" -o -name "*.bif" -o -name "*-manifest.json" -o -name "*.nfo" \) | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | grep -vEi 'folder.jpg|banner.jpg|backdrop.jpg|logo.jpg|cover.jpg|tvshow.nfo|season.nfo' -) | sed 's/-I1L2B-/\\[/g' | sed 's/-I1R2B-/\\]/g' | sed 's/ /\\ /g' | xargs -t rm -vf >> $scriptTempLogLocation
             echo ""
             echo "-----Cleaning $library2Name (rm uneeded .jpg + .bif + -manifest.json files)-----"
-            grep -vf <(find $library2* -type f \( -iname "*.mkv" -o -iname "*.mk3d" -o -iname "*.mp4" -o -iname "*.m4v" -o -iname "*.mov" -o -iname "*.qt" -o -iname "*.asf" -o -iname "*.wmv" -o -iname "*.avi" -o -iname "*.mxf" -o -iname "*.m2p" -o -iname "*.ps" -o -iname "*.ts" -o -iname "*.tsv" -o -iname "*.m2ts" -o -iname "*.mts" -o -iname "*.vob" -o -iname "*.evo" -o -iname "*.3gp" -o -iname "*.3g2" -o -iname "*.f4v" -o -iname "*.flv" -o -iname "*.ogv" -o -iname "*.ogx" -o -iname "*.webm" -o -iname "*.rmvb" -o -iname "*.divx" -o -iname "*.xvid" \) -exec basename {} \; | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | sed 's/\.[^.]*$//gm') <(find $library2* -type f \( -name "*.jpg" -o -name "*.bif" -o -name "*-manifest.json" \) | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | grep -vEi 'folder.jpg|banner.jpg|backdrop.jpg|logo.jpg|cover.jpg' -) | sed 's/-I1L2B-/\\[/g' | sed 's/-I1R2B-/\\]/g' | sed 's/ /\\ /g' | xargs -t rm -vf >> $scriptTempLogLocation
+            grep -vf <(find $library2* -type f \( -iname "*.mkv" -o -iname "*.mk3d" -o -iname "*.mp4" -o -iname "*.m4v" -o -iname "*.mov" -o -iname "*.qt" -o -iname "*.asf" -o -iname "*.wmv" -o -iname "*.avi" -o -iname "*.mxf" -o -iname "*.m2p" -o -iname "*.ps" -o -iname "*.ts" -o -iname "*.tsv" -o -iname "*.m2ts" -o -iname "*.mts" -o -iname "*.vob" -o -iname "*.evo" -o -iname "*.3gp" -o -iname "*.3g2" -o -iname "*.f4v" -o -iname "*.flv" -o -iname "*.ogv" -o -iname "*.ogx" -o -iname "*.webm" -o -iname "*.rmvb" -o -iname "*.divx" -o -iname "*.xvid" \) -exec basename {} \; | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | sed 's/\.[^.]*$//gm') <(find $library2* -type f \( -name "*.jpg" -o -name "*.bif" -o -name "*-manifest.json" -o -name "*.nfo" \) | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | grep -vEi 'folder.jpg|banner.jpg|backdrop.jpg|logo.jpg|cover.jpg|tvshow.nfo|season.nfo' -) | sed 's/-I1L2B-/\\[/g' | sed 's/-I1R2B-/\\]/g' | sed 's/ /\\ /g' | xargs -t rm -vf >> $scriptTempLogLocation
             echo ""
             echo "-----Cleaning $library3Name (rm uneeded .jpg + .bif + -manifest.json files)-----"
-            grep -vf <(find $library3* -type f \( -iname "*.mkv" -o -iname "*.mk3d" -o -iname "*.mp4" -o -iname "*.m4v" -o -iname "*.mov" -o -iname "*.qt" -o -iname "*.asf" -o -iname "*.wmv" -o -iname "*.avi" -o -iname "*.mxf" -o -iname "*.m2p" -o -iname "*.ps" -o -iname "*.ts" -o -iname "*.tsv" -o -iname "*.m2ts" -o -iname "*.mts" -o -iname "*.vob" -o -iname "*.evo" -o -iname "*.3gp" -o -iname "*.3g2" -o -iname "*.f4v" -o -iname "*.flv" -o -iname "*.ogv" -o -iname "*.ogx" -o -iname "*.webm" -o -iname "*.rmvb" -o -iname "*.divx" -o -iname "*.xvid" \) -exec basename {} \; | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | sed 's/\.[^.]*$//gm') <(find $library3* -type f \( -name "*.jpg" -o -name "*.bif" -o -name "*-manifest.json" \) | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | grep -vEi 'folder.jpg|banner.jpg|backdrop.jpg|logo.jpg|cover.jpg' -) | sed 's/-I1L2B-/\\[/g' | sed 's/-I1R2B-/\\]/g' | sed 's/ /\\ /g' | xargs -t rm -vf >> $scriptTempLogLocation
+            grep -vf <(find $library3* -type f \( -iname "*.mkv" -o -iname "*.mk3d" -o -iname "*.mp4" -o -iname "*.m4v" -o -iname "*.mov" -o -iname "*.qt" -o -iname "*.asf" -o -iname "*.wmv" -o -iname "*.avi" -o -iname "*.mxf" -o -iname "*.m2p" -o -iname "*.ps" -o -iname "*.ts" -o -iname "*.tsv" -o -iname "*.m2ts" -o -iname "*.mts" -o -iname "*.vob" -o -iname "*.evo" -o -iname "*.3gp" -o -iname "*.3g2" -o -iname "*.f4v" -o -iname "*.flv" -o -iname "*.ogv" -o -iname "*.ogx" -o -iname "*.webm" -o -iname "*.rmvb" -o -iname "*.divx" -o -iname "*.xvid" \) -exec basename {} \; | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | sed 's/\.[^.]*$//gm') <(find $library3* -type f \( -name "*.jpg" -o -name "*.bif" -o -name "*-manifest.json" -o -name "*.nfo" \) | sed 's/\[/-I1L2B-/g' | sed 's/\]/-I1R2B-/g' | grep -vEi 'folder.jpg|banner.jpg|backdrop.jpg|logo.jpg|cover.jpg|tvshow.nfo|season.nfo' -) | sed 's/-I1L2B-/\\[/g' | sed 's/-I1R2B-/\\]/g' | sed 's/ /\\ /g' | xargs -t rm -vf >> $scriptTempLogLocation
 
             echo "" >> $scriptTempLogLocation
             echo "" >> $scriptTempLogLocation
@@ -157,7 +157,7 @@ else
 
             rm $scriptTempLogLocation
 
-            if grep -s "removed " $scriptLogLocation | grep -svEi '.jpg|.bif|-manifest.json' -; then
+            if grep -s "removed " $scriptLogLocation | grep -svEi '.jpg|.bif|-manifest.json|.nfo' -; then
                 echo ""
                 echo "!!!---WARNING---!!!"
                 echo "Incorrect file removal has been detected from the removal log!"
