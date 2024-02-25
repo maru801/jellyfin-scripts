@@ -36,7 +36,7 @@ The following are files that are excluded from being deleted:
 If your server has extra jpg files that are used for metadata purposes that don't match with this list, they will be deleted.
 You will have to modify the script to ignore other jpg metadata that you want to keep.
 
-Note: I separated file types from the logic and into varaibles to make editing the script easier. Just creating a new variable with your new metadata won't be enough. You need to modifiy the actual logic to include your new variable.
+Note: I separated file types from the logic and into variables to make editing the script easier. Just creating a new variable with your new metadata won't be enough. You need to modifiy the actual logic to include your new variable.
 
 The main lines that contain the logic to edit the libraries are located at lines 122-132 (for -h flag, not-verbose output), and lines 231-233, 238-240, & 245-247 (for all other verbose output).
 
