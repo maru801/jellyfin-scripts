@@ -1,7 +1,7 @@
 # jellyfin-scripts
 
 ### -- jellyfin-library-metadata-cleanup.sh --
-This script is meant for those that store metadata alongside their Jellyfin media libraries.
+This script is meant for those that store metadata alongside their Jellyfin media libraries (though you could modify it to also remove bif files from Jellyfin's config folder).
 This script works with Jellyfin v10.8.13 and Jellyscrub v1.1.1.0.
 If any changes are made to either that changes how metadata is automatically named, this script might need to be remade/reworked.
 
@@ -36,7 +36,9 @@ The following are files that are excluded from being deleted:
 If your server has extra jpg files that are used for metadata purposes that don't match with this list, they will be deleted.
 You will have to modify the script to ignore other jpg metadata that you want to keep.
 
-The main lines that contain the logic to edit the libraries are located at lines 50-57 (for -h flag, not-verbose output), and lines 148-149, 154-155, & 160-161 (for all other verbose output).
+Note: I separated file types from the logic and into varaibles to make editing the script easier. Just creating a new variable with your new metadata won't be enough. You need to modifiy the actual logic to include your new variable.
+
+The main lines that contain the logic to edit the libraries are located at lines 122-132 (for -h flag, not-verbose output), and lines 231-233, 238-240, & 245-247 (for all other verbose output).
 
 Notes on why I created this:
   - I manually delete files a lot on my server. I sometimes forget to delete the related metadata files that Jellyfin and Jellyscrub place in my libraries.
