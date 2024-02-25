@@ -10,7 +10,7 @@ serverName=YourServerName
 ## Filename doesn't matter for both permanent & temp removal logs ##
 ## Make sure other files in given path don't conflict with the filename you provide. ##
 scriptLogLocationPathOnly=test/
-scriptLogLocation=test/removed-log.txt         
+scriptLogLocation=test/removed-log.txt
 scriptTempLogLocation=test/temp-removed-log.txt
 
 ## Library Paths ##
