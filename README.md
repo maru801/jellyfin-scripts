@@ -8,6 +8,7 @@ If any changes are made to either that change how metadata is automatically name
 
 This will find and delete all left-over jpg thumbnails and trickplay related files (.bif, -manifest.json) that no longer have an accompanying video file.
 The script will loop through libraries looking for leftover metadata. Modify the path name variables on top of the script to get it working for your server.
+
 By default, this script has 10 spots to enable library paths to be cleaned. If you need more, you'll need to add more variables to hold the new library paths, then you'll need to modify the library arrays to include the new variables.
 It should be straight-foward what you need to copy and paste to add more libraries by looking at the lines of code from 5-101.
 
