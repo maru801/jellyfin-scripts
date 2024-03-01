@@ -15,76 +15,151 @@ scriptTempLogLocation=test/temp-removed-log.txt
 
 ## Library Paths ##
 ## IMPORTANT: Make sure library paths end with "/" ##
+## Enable libraries by setting to "true" ##
 library1=test1/
-library2=test2/
-library3=test3/
-
-## Library Names ##
+library1Enabled=false       ## enable with "true" (all lower-case)
 library1Name="Test1 Library"
+
+library2=test2/
+library2Enabled=false
 library2Name="Test2 Library"
+
+library3=test3/
+library3Enabled=false
 library3Name="Test3 Library"
+
+library4=test4/
+library4Enabled=false
+library4Name="Test4 Library"
+
+library5=test5/
+library5Enabled=false
+library5Name="Test5 Library"
+
+library6=test6/
+library6Enabled=false
+library6Name="Test6 Library"
+
+library7=test7/
+library7Enabled=false
+library7Name="Test7 Library"
+
+library8=test8/
+library8Enabled=false
+library8Name="Test8 Library"
+
+library9=test9/
+library9Enabled=false
+library9Name="Test9 Library"
+
+library10=test10/
+library10Enabled=false
+library10Name="Test10 Library"
+
+## Make sure libraryCount is set to the same number of libraries that you create. ##
+libraryCount=10
+
+## Make sure to add to the following arrays if you're creating extra libraries. ##
+libraryPathArray=(
+    $library1
+    $library2
+    $library3
+    $library4
+    $library5
+    $library6
+    $library7
+    $library8
+    $library9
+    $library10
+)
+
+LibraryEnabledArray=(
+    $library1Enabled
+    $library2Enabled
+    $library3Enabled
+    $library4Enabled
+    $library5Enabled
+    $library6Enabled
+    $library7Enabled
+    $library8Enabled
+    $library9Enabled
+    $library10Enabled
+)
+
+libraryNameArray=(
+    "$library1Name"
+    "$library2Name"
+    "$library3Name"
+    "$library4Name"
+    "$library5Name"
+    "$library6Name"
+    "$library7Name"
+    "$library8Name"
+    "$library9Name"
+    "$library10Name"
+)
 #######################################################################################
 
 ######################################################################
 ###################### File Types to Clean Out #######################
 # Note: Make sure to declare BIF files only on the "bifType" variables
-fileType1=".jpg"
-fileType2=".nfo"
+fileType1=.jpg
+fileType2=.nfo
 
-bifType1=".bif"
-bifType2="-manifest.json"
+bifType1=.bif
+bifType2=-manifest.json
 ######################################################################
 
 #####################################################
 ############## BIF Resolutions to Keep ##############
 ## Note: All other BIF resolutions will be deleted ##
-bifResolutionToKeep1="320"
-bifResolutionToKeep2="0"
-bifResolutionToKeep3="0"
+bifResolutionToKeep1=320
+bifResolutionToKeep2=0
+bifResolutionToKeep3=0
 #####################################################
 
 ################################
 ## Files to Ignore/Not Delete ##
-ignoreFile1="folder.jpg"
-ignoreFile2="banner.jpg"
-ignoreFile3="backdrop.jpg"
-ignoreFile4="logo.jpg"
-ignoreFile5="cover.jpg"
-ignoreFile6="tvshow.nfo"
-ignoreFile7="season.nfo"
+ignoreFile1=folder.jpg
+ignoreFile2=banner.jpg
+ignoreFile3=backdrop.jpg
+ignoreFile4=logo.jpg
+ignoreFile5=cover.jpg
+ignoreFile6=tvshow.nfo
+ignoreFile7=season.nfo
 ################################
 
 #########################################
 ## List of Video File Types to Compare ##
-videoType1=".mkv"
-videoType2=".mk3d"
-videoType3=".mp4"
-videoType4=".m4v"
-videoType5=".mov"
-videoType6=".qt"
-videoType7=".asf"
-videoType8=".wmv"
-videoType9=".avi"
-videoType10=".mxf"
-videoType11=".m2p"
-videoType12=".ps"
-videoType13=".ts"
-videoType14=".tsv"
-videoType15=".m2ts"
-videoType16=".mts"
-videoType17=".vob"
-videoType18=".evo"
-videoType19=".3gp"
-videoType20=".3g2"
-videoType21=".f4v"
-videoType22=".flv"
-videoType23=".ogv"
-videoType24=".ogx"
-videoType25=".webm" 
-videoType26=".rmvb"
-videoType27=".divx"
-videoType28=".xvid"
-videoType29=".mpg"
+videoType1=.mkv
+videoType2=.mk3d
+videoType3=.mp4
+videoType4=.m4v
+videoType5=.mov
+videoType6=.qt
+videoType7=.asf
+videoType8=.wmv
+videoType9=.avi
+videoType10=.mxf
+videoType11=.m2p
+videoType12=.ps
+videoType13=.ts
+videoType14=.tsv
+videoType15=.m2ts
+videoType16=.mts
+videoType17=.vob
+videoType18=.evo
+videoType19=.3gp
+videoType20=.3g2
+videoType21=.f4v
+videoType22=.flv
+videoType23=.ogv
+videoType24=.ogx
+videoType25=.webm 
+videoType26=.rmvb
+videoType27=.divx
+videoType28=.xvid
+videoType29=.mpg
 #########################################
 
 if [ "$1" == "-c" ]; then
@@ -120,17 +195,14 @@ elif [ "$1" == "-h" ]; then
         date >> $scriptTempLogLocation
         echo "--------------------------------" >> $scriptTempLogLocation
 
-        grep -vFf <(find $library1* -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find $library1* -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7" -) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
-        grep -vFf <(find $library1* -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/-/gm') <(find $library1* -type f \( -name "*$bifType1" -o -name "*$bifType2" \)) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
-        grep -vFf <(find $library1* -type f \( -iname "*-$bifResolutionToKeep1.bif" -o -iname "*-$bifResolutionToKeep2.bif" -o -iname "*-$bifResolutionToKeep3.bif" \)) <(find $library1* -iname "*.bif") | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
-
-        grep -vFf <(find $library2* -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find $library2* -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7" -) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
-        grep -vFf <(find $library2* -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/-/gm') <(find $library2* -type f \( -name "*$bifType1" -o -name "*$bifType2" \)) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
-        grep -vFf <(find $library2* -type f \( -iname "*-$bifResolutionToKeep1.bif" -o -iname "*-$bifResolutionToKeep2.bif" -o -iname "*-$bifResolutionToKeep3.bif" \)) <(find $library2* -iname "*.bif") | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
-
-        grep -vFf <(find $library3* -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find $library3* -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7" -) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
-        grep -vFf <(find $library3* -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/-/gm') <(find $library3* -type f \( -name "*$bifType1" -o -name "*$bifType2" \)) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
-        grep -vFf <(find $library3* -type f \( -iname "*-$bifResolutionToKeep1.bif" -o -iname "*-$bifResolutionToKeep2.bif" -o -iname "*-$bifResolutionToKeep3.bif" \)) <(find $library3* -iname "*.bif") | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
+        # Note: Left the "//,/" part in calls to array variables in case user creates comma separated array
+        for((i = 0 ; i <= ($libraryCount - 1); i++)); do
+            if [ ${LibraryEnabledArray[i]//,/} == true ]; then
+                grep -vFf <(find ${libraryPathArray[i]//,/} -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find ${libraryPathArray[i]//,/} -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7" -) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
+                grep -vFf <(find ${libraryPathArray[i]//,/} -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/-/gm') <(find ${libraryPathArray[i]//,/} -type f \( -name "*$bifType1" -o -name "*$bifType2" \)) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
+                grep -vFf <(find ${libraryPathArray[i]//,/} -type f \( -iname "*-$bifResolutionToKeep1.bif" -o -iname "*-$bifResolutionToKeep2.bif" -o -iname "*-$bifResolutionToKeep3.bif" \)) <(find ${libraryPathArray[i]//,/} -iname "*.bif") | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
+            fi
+        done
 
         echo "" >> $scriptTempLogLocation
         echo "" >> $scriptTempLogLocation
@@ -191,9 +263,13 @@ else
         echo ""
         echo "This script expects the following paths to exist on the system:"
         echo "$scriptLogLocationPathOnly {Removal Log Storage Location}"
-        echo "$library1 {$library1Name}"
-        echo "$library2 {$library2Name}"
-        echo "$library3 {$library3Name}"
+
+        # Note: Left the "//,/" part in calls to array variables in case user creates comma separated array
+        for((i = 0 ; i <= ($libraryCount - 1); i++)); do
+            if [ ${LibraryEnabledArray[i]//,/} == true ]; then
+                echo "${libraryPathArray[i]//,/} {${libraryNameArray[i]//,/}}"
+            fi
+        done
 
         echo ""
 
@@ -226,26 +302,16 @@ else
             date >> $scriptTempLogLocation
             echo "--------------------------------" >> $scriptTempLogLocation
 
-            echo ""
-            
-            echo "-----Cleaning $library1Name (rm uneeded $fileType1 + $fileType2 + $bifType1 + $bifType2 files)-----"
-            grep -vFf <(find $library1* -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find $library1* -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7" -) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
-            grep -vFf <(find $library1* -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/-/gm') <(find $library1* -type f \( -name "*$bifType1" -o -name "*$bifType2" \)) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
-            grep -vFf <(find $library1* -type f \( -iname "*-$bifResolutionToKeep1.bif" -o -iname "*-$bifResolutionToKeep2.bif" -o -iname "*-$bifResolutionToKeep3.bif" \)) <(find $library1* -iname "*.bif") | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
-
-            echo ""
-            
-            echo "-----Cleaning $library2Name (rm uneeded $fileType1 + $fileType2 + $bifType1 + $bifType2 files)-----"
-            grep -vFf <(find $library2* -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find $library2* -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7" -) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
-            grep -vFf <(find $library2* -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/-/gm') <(find $library2* -type f \( -name "*$bifType1" -o -name "*$bifType2" \)) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
-            grep -vFf <(find $library2* -type f \( -iname "*-$bifResolutionToKeep1.bif" -o -iname "*-$bifResolutionToKeep2.bif" -o -iname "*-$bifResolutionToKeep3.bif" \)) <(find $library2* -iname "*.bif") | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
-
-            echo ""
-            
-            echo "-----Cleaning $library3Name (rm uneeded $fileType1 + $fileType2 + $bifType1 + $bifType2 files)-----"
-            grep -vFf <(find $library3* -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find $library3* -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7" -) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
-            grep -vFf <(find $library3* -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/-/gm') <(find $library3* -type f \( -name "*$bifType1" -o -name "*$bifType2" \)) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
-            grep -vFf <(find $library3* -type f \( -iname "*-$bifResolutionToKeep1.bif" -o -iname "*-$bifResolutionToKeep2.bif" -o -iname "*-$bifResolutionToKeep3.bif" \)) <(find $library3* -iname "*.bif") | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
+            # Note: Left the "//,/" part in calls to array variables in case user creates comma separated array
+            for((i = 0 ; i <= ($libraryCount - 1); i++)); do
+                if [ ${LibraryEnabledArray[i]//,/} == true ]; then
+                    echo ""
+                    echo "-----Cleaning ${libraryNameArray[i]//,/} (rm uneeded $fileType1 + $fileType2 + $bifType1 + $bifType2 files)-----"
+                    grep -vFf <(find ${libraryPathArray[i]//,/} -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find ${libraryPathArray[i]//,/} -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7" -) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
+                    grep -vFf <(find ${libraryPathArray[i]//,/} -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/-/gm') <(find ${libraryPathArray[i]//,/} -type f \( -name "*$bifType1" -o -name "*$bifType2" \)) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
+                    grep -vFf <(find ${libraryPathArray[i]//,/} -type f \( -iname "*-$bifResolutionToKeep1.bif" -o -iname "*-$bifResolutionToKeep2.bif" -o -iname "*-$bifResolutionToKeep3.bif" \)) <(find ${libraryPathArray[i]//,/} -iname "*.bif") | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
+                fi
+            done
 
             echo "" >> $scriptTempLogLocation
             echo "" >> $scriptTempLogLocation
