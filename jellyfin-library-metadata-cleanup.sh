@@ -182,6 +182,7 @@ elif [ "$1" == "-h" ]; then
     if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2|$bifType1|$bifType2" -; then
         echo ""
         echo "jellyfin-library-metadata-cleanup.sh"
+        echo ""
         echo "!!!---WARNING---!!!"
         echo "Incorrect file removal has been detected from the removal log!"
         echo "Check removal log for more info of when this occured."
@@ -219,6 +220,7 @@ elif [ "$1" == "-h" ]; then
         if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2|$bifType1|$bifType2" -; then
             echo ""
             echo "jellyfin-library-metadata-cleanup.sh"
+            echo ""
             echo "!!!---WARNING---!!!"
             echo "Incorrect file removal has been detected from the removal log!"
             echo "Check removal log for more info of when this occured."
@@ -237,6 +239,9 @@ elif [ "$1" == "-h" ]; then
     fi
 else
     if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2|$bifType1|$bifType2" -; then
+        echo ""
+        echo "jellyfin-library-metadata-cleanup.sh"
+        echo ""
         echo "!!!---WARNING---!!!"
         echo "Incorrect file removal has been detected from the removal log!"
         echo "Check removal log for more info of when this occured."
@@ -247,7 +252,6 @@ else
         echo "-- Note: Use the [-c] flag during script runtime to delete the removal log. --"
         echo ""
         echo ">>> Detailed list of removed items appeneded to this file: $scriptLogLocation <<<"
-        echo ""
         echo "...Ending Script..."
     else
         echo "Start-up Flags (Use at Runtime):"
@@ -327,6 +331,8 @@ else
             rm $scriptTempLogLocation
 
             if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2|$bifType1|$bifType2" -; then
+                echo ""
+                echo "jellyfin-library-metadata-cleanup.sh"
                 echo ""
                 echo "!!!---WARNING---!!!"
                 echo "Incorrect file removal has been detected from the removal log!"
