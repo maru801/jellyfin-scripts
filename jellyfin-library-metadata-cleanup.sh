@@ -105,21 +105,9 @@ libraryNameArray=(
 
 ######################################################################
 ###################### File Types to Clean Out #######################
-# Note: Make sure to declare BIF files only on the "bifType" variables
 fileType1=.jpg
 fileType2=.nfo
-
-bifType1=.bif
-bifType2=-manifest.json
 ######################################################################
-
-#####################################################
-############## BIF Resolutions to Keep ##############
-## Note: All other BIF resolutions will be deleted ##
-bifResolutionToKeep1=320
-bifResolutionToKeep2=0
-bifResolutionToKeep3=0
-#####################################################
 
 ################################
 ## Files to Ignore/Not Delete ##
@@ -179,7 +167,7 @@ elif [ "$1" == "-C" ]; then
 elif [ "$1" == "-d" ]; then
     cat $scriptLogLocation
 elif [ "$1" == "-h" ]; then
-    if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2|$bifType1|$bifType2" -; then
+    if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2" -; then
         echo ""
         echo "jellyfin-library-metadata-cleanup.sh"
         echo ""
@@ -203,8 +191,6 @@ elif [ "$1" == "-h" ]; then
         for((i = 0 ; i <= ($libraryCount - 1); i++)); do
             if [ ${LibraryEnabledArray[i]//,/} == true ]; then
                 grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find "${libraryPathArray[i]//,/}" -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7" -) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
-                grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/-/gm') <(find "${libraryPathArray[i]//,/}" -type f \( -name "*$bifType1" -o -name "*$bifType2" \)) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
-                grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*-$bifResolutionToKeep1.bif" -o -iname "*-$bifResolutionToKeep2.bif" -o -iname "*-$bifResolutionToKeep3.bif" \)) <(find "${libraryPathArray[i]//,/}" -iname "*.bif") | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
             fi
         done
 
@@ -217,7 +203,7 @@ elif [ "$1" == "-h" ]; then
 
         rm $scriptTempLogLocation
 
-        if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2|$bifType1|$bifType2" -; then
+        if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2" -; then
             echo ""
             echo "jellyfin-library-metadata-cleanup.sh"
             echo ""
@@ -238,7 +224,7 @@ elif [ "$1" == "-h" ]; then
         fi
     fi
 else
-    if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2|$bifType1|$bifType2" -; then
+    if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2" -; then
         echo ""
         echo "jellyfin-library-metadata-cleanup.sh"
         echo ""
@@ -280,12 +266,9 @@ else
 
         echo ""
 
-        echo "This bash script will delete leftover nfo, jpg thumbnails, and trickplay related files from the linked libraries in the script."
+        echo "This bash script will delete leftover jpg thumbnails and nfo related files from the linked libraries in the script."
         echo ""
         echo "The user running this script needs to have the correct permissions set to access all three libraries and delete files."
-        echo ""
-        echo "Note: BIF files with the following resolutions will be preserved: [$bifResolutionToKeep1, $bifResolutionToKeep2, $bifResolutionToKeep3]"
-        echo "Note: All other BIF file resolutions will be deleted from your libraries."
         echo ""
 
         echo "---Enter [Y] to Proceed---"
@@ -313,10 +296,8 @@ else
             for((i = 0 ; i <= ($libraryCount - 1); i++)); do
                 if [ ${LibraryEnabledArray[i]//,/} == true ]; then
                     echo ""
-                    echo "-----Cleaning \"${libraryNameArray[i]//,/}\" (rm uneeded $fileType1 + $fileType2 + $bifType1 + $bifType2 files)-----"
+                    echo "-----Cleaning \"${libraryNameArray[i]//,/}\" (rm uneeded $fileType1 + $fileType2 files)-----"
                     grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find "${libraryPathArray[i]//,/}" -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7" -) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
-                    grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/-/gm') <(find "${libraryPathArray[i]//,/}" -type f \( -name "*$bifType1" -o -name "*$bifType2" \)) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
-                    grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*-$bifResolutionToKeep1.bif" -o -iname "*-$bifResolutionToKeep2.bif" -o -iname "*-$bifResolutionToKeep3.bif" \)) <(find "${libraryPathArray[i]//,/}" -iname "*.bif") | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
                 fi
             done
 
@@ -330,7 +311,7 @@ else
 
             rm $scriptTempLogLocation
 
-            if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2|$bifType1|$bifType2" -; then
+            if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2" -; then
                 echo ""
                 echo "jellyfin-library-metadata-cleanup.sh"
                 echo ""
