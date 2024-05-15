@@ -120,7 +120,7 @@ ignoreFile6="tvshow.nfo"
 ignoreFile7="season.nfo"
 ## New Jellyfin v10.9.0 Additions Below
 ignoreFile8="movie.nfo" ## New Addition for v10.9.0, all movies will have their .nfo files named like this instead of their full file name.
-ignoreFile9="landscape.jpg" ## These are named "thumbs" in the Jellyfin UI. They're added along with movies.
+ignoreFile9="landscape.jpg" ## These are named "thumbs" in the Jellyfin UI.
 ################################
 
 #########################################
