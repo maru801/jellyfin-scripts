@@ -31,10 +31,13 @@ The following are files that are excluded from being deleted:
 - backdrop.jpg
 - logo.jpg
 - cover.jpg
+- landscape.jpg
 - tvshow.nfo
 - season.nfo
 - movie.nfo
-- landscape.jpg
+- VIDEO_TS.nfo
+- artist.nfo
+- album.nfo
 
 If your server has extra jpg files that are used for metadata purposes that don't match with this list, they will be deleted.
 You will have to modify the script to ignore other jpg metadata that you want to keep.
