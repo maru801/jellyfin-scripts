@@ -111,19 +111,21 @@ fileType2=.nfo
 
 ################################
 ## Files to Ignore/Not Delete ##
-ignoreFile1="folder.jpg"
-ignoreFile2="banner.jpg"
-ignoreFile3="backdrop.jpg"
-ignoreFile4="logo.jpg"
-ignoreFile5="cover.jpg"
+ignoreFile1="folder.*"
+ignoreFile2="banner.*"
+ignoreFile3="backdrop.*"
+ignoreFile4="logo.*"
+ignoreFile5="cover.*"
 ignoreFile6="tvshow.nfo"
 ignoreFile7="season.nfo"
 ## New Jellyfin v10.9.0 Additions Below
 ignoreFile8="movie.nfo" ## New Addition for v10.9.0, all movies will have their .nfo files named like this instead of their full file name.
-ignoreFile9="landscape.jpg" ## These are named "thumbs" in the Jellyfin UI.
+ignoreFile9="landscape.*" ## These are named "thumbs" in the Jellyfin UI.
 ignoreFile10=VIDEO_TS.nfo
 ignoreFile11=artist.nfo ## Music library metadata
 ignoreFile12=album.nfo ## Music library metadata
+ignoreFile13="*-poster.*"
+ignoreFile14="*-thumb.*"
 ################################
 
 #########################################
@@ -196,7 +198,7 @@ elif [ "$1" == "-h" ]; then
         # Note: Left the "//,/" part in calls to array variables in case user creates comma separated array
         for((i = 0 ; i <= ($libraryCount - 1); i++)); do
             if [ ${LibraryEnabledArray[i]//,/} == true ]; then
-                grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find "${libraryPathArray[i]//,/}" -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7|$ignoreFile8|$ignoreFile9|$ignoreFile10|$ignoreFile11|$ignoreFile12" -) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
+                grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find "${libraryPathArray[i]//,/}" -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7|$ignoreFile8|$ignoreFile9|$ignoreFile10|$ignoreFile11|$ignoreFile12|$ignoreFile13|$ignoreFile14" -) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
             fi
         done
 
@@ -305,7 +307,7 @@ else
                 if [ ${LibraryEnabledArray[i]//,/} == true ]; then
                     echo ""
                     echo "-----Cleaning \"${libraryNameArray[i]//,/}\" (rm uneeded $fileType1 + $fileType2 files)-----"
-                    grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find "${libraryPathArray[i]//,/}" -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7|$ignoreFile8|$ignoreFile9|$ignoreFile10|$ignoreFile11|$ignoreFile12" -) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
+                    grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find "${libraryPathArray[i]//,/}" -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7|$ignoreFile8|$ignoreFile9|$ignoreFile10|$ignoreFile11|$ignoreFile12|$ignoreFile13|$ignoreFile14" -) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
                 fi
             done
 
