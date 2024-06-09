@@ -2,6 +2,7 @@
 
 ## Note: For all variables, use "quotes" when adding things with spaces or special characters
 serverName="YourServerName"
+serverVersion=10.9.6
 
 #######################################################################################
 ######################################## Paths ########################################
@@ -176,7 +177,7 @@ elif [ "$1" == "-d" ]; then
 elif [ "$1" == "-h" ]; then
     if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2" -; then
         echo ""
-        echo "jellyfin-library-metadata-cleanup.sh"
+        echo "jellyfin-library-metadata-cleanup-v$serverVersion.sh"
         echo ""
         echo "!!!---WARNING---!!!"
         echo "Incorrect file removal has been detected from the removal log!"
@@ -213,7 +214,7 @@ elif [ "$1" == "-h" ]; then
 
         if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2" -; then
             echo ""
-            echo "jellyfin-library-metadata-cleanup.sh"
+            echo "jellyfin-library-metadata-cleanup-v$serverVersion.sh"
             echo ""
             echo "!!!---WARNING---!!!"
             echo "Incorrect file removal has been detected from the removal log!"
@@ -234,7 +235,7 @@ elif [ "$1" == "-h" ]; then
 else
     if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2" -; then
         echo ""
-        echo "jellyfin-library-metadata-cleanup.sh"
+        echo "jellyfin-library-metadata-cleanup-v$serverVersion.sh"
         echo ""
         echo "!!!---WARNING---!!!"
         echo "Incorrect file removal has been detected from the removal log!"
@@ -259,10 +260,10 @@ else
         echo ""
         echo "--Script designed for \"$serverName\"--"
 
-        echo "---Script made for Jellyfin v10.9.6---"
-        echo "---Any future changes to automatic metadata naming by either service may break this script.---"
+        echo "---Script made for Jellyfin v$serverVersion---"
+        echo "---Any future changes to automatic metadata naming/sorting convention by Jellyfin may break this script.---"
         echo ""
-        echo "This script currently only supports libraries that contain videos. Music libraries are not supported by this script."
+        echo "This script currently only supports libraries that contain videos. Music libraries are not supported (have not been tested) by this script."
         echo ""
         echo "This script expects the following paths to exist on the system:"
         echo "1: $scriptLogLocationPathOnly {Removal Log Storage Location}"
@@ -324,7 +325,7 @@ else
 
             if grep -s "removed " $scriptLogLocation | grep -svEi "$fileType1|$fileType2" -; then
                 echo ""
-                echo "jellyfin-library-metadata-cleanup.sh"
+                echo "jellyfin-library-metadata-cleanup-v$serverVersion.sh"
                 echo ""
                 echo "!!!---WARNING---!!!"
                 echo "Incorrect file removal has been detected from the removal log!"
