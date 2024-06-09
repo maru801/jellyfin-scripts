@@ -105,27 +105,26 @@ libraryNameArray=(
 
 ######################################################################
 ###################### File Types to Clean Out #######################
-fileType1=.jpg
-fileType2=.nfo
+fileType1=.nfo
+fileType2=-thumb  ## Make sure to not add anything else after "thumb". This needs to match with anything containing "-thumb", not just "*-thumb.*", but "*-thumb*".
 ######################################################################
 
 ################################
 ## Files to Ignore/Not Delete ##
-ignoreFile1="folder.*"
-ignoreFile2="banner.*"
-ignoreFile3="backdrop.*"
-ignoreFile4="logo.*"
-ignoreFile5="cover.*"
-ignoreFile6="tvshow.nfo"
-ignoreFile7="season.nfo"
-## New Jellyfin v10.9.0 Additions Below
-ignoreFile8="movie.nfo" ## New Addition for v10.9.0, all movies will have their .nfo files named like this instead of their full file name.
-ignoreFile9="landscape.*" ## These are named "thumbs" in the Jellyfin UI.
-ignoreFile10=VIDEO_TS.nfo
-ignoreFile11=artist.nfo ## Music library metadata
-ignoreFile12=album.nfo ## Music library metadata
-ignoreFile13="*-poster.*"
-ignoreFile14="*-thumb.*"
+ignoreFile1="tvshow.nfo"
+ignoreFile2="season.nfo"
+ignoreFile3="movie.nfo" ## New addition for v10.9, all movies will have their .nfo files named like this instead of their full file name.
+ignoreFile4=VIDEO_TS.nfo
+ignoreFile5=artist.nfo ## Music library metadata
+ignoreFile6=album.nfo ## Music library metadata
+## Note: The bottom variables are not used with this script as of version 10.9.6, I'm keeping theme declared here in case their needed later on.
+ignoreFile7="folder.*"
+ignoreFile8="banner.*"
+ignoreFile9="backdrop.*"
+ignoreFile10="logo.*"
+ignoreFile11="cover.*"
+ignoreFile12="landscape.*" ## These are named "thumbs" in the Jellyfin UI.
+ignoreFile13="-poster.*"  ## New addition for v10.9, all seasons will now save "folder.jpg" covers as "season##-poster.jpg".
 ################################
 
 #########################################
@@ -198,7 +197,8 @@ elif [ "$1" == "-h" ]; then
         # Note: Left the "//,/" part in calls to array variables in case user creates comma separated array
         for((i = 0 ; i <= ($libraryCount - 1); i++)); do
             if [ ${LibraryEnabledArray[i]//,/} == true ]; then
-                grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find "${libraryPathArray[i]//,/}" -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7|$ignoreFile8|$ignoreFile9|$ignoreFile10|$ignoreFile11|$ignoreFile12|$ignoreFile13|$ignoreFile14" -) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
+                grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$fileType1" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6" -) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
+                grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/-thumb./gm') <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$fileType2*" \) | grep -Ei ".jpg|.jpeg|.png|.svg|.webp" - ) | sed 's/\(.*\)/"\1"/g' | xargs rm -vf >> $scriptTempLogLocation
             fi
         done
 
@@ -259,7 +259,7 @@ else
         echo ""
         echo "--Script designed for \"$serverName\"--"
 
-        echo "---Script made for Jellyfin v10.9.#---"
+        echo "---Script made for Jellyfin v10.9.6---"
         echo "---Any future changes to automatic metadata naming by either service may break this script.---"
         echo ""
         echo "This script currently only supports libraries that contain videos. Music libraries are not supported by this script."
@@ -307,7 +307,8 @@ else
                 if [ ${LibraryEnabledArray[i]//,/} == true ]; then
                     echo ""
                     echo "-----Cleaning \"${libraryNameArray[i]//,/}\" (rm uneeded $fileType1 + $fileType2 files)-----"
-                    grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find "${libraryPathArray[i]//,/}" -type f \( -name "*$fileType1" -o -name "*$fileType2" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6|$ignoreFile7|$ignoreFile8|$ignoreFile9|$ignoreFile10|$ignoreFile11|$ignoreFile12|$ignoreFile13|$ignoreFile14" -) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
+                    grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/./gm') <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$fileType1" \) | grep -vEi "$ignoreFile1|$ignoreFile2|$ignoreFile3|$ignoreFile4|$ignoreFile5|$ignoreFile6" -) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
+                    grep -vFf <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$videoType1" -o -iname "*$videoType2" -o -iname "*$videoType3" -o -iname "*$videoType4" -o -iname "*$videoType5" -o -iname "*$videoType6" -o -iname "*$videoType7" -o -iname "*$videoType8" -o -iname "*$videoType9" -o -iname "*$videoType10" -o -iname "*$videoType11" -o -iname "*$videoType12" -o -iname "*$videoType13" -o -iname "*$videoType14" -o -iname "*$videoType15" -o -iname "*$videoType16" -o -iname "*$videoType17" -o -iname "*$videoType18" -o -iname "*$videoType19" -o -iname "*$videoType20" -o -iname "*$videoType21" -o -iname "*$videoType22" -o -iname "*$videoType23" -o -iname "*$videoType24" -o -iname "*$videoType25" -o -iname "*$videoType26" -o -iname "*$videoType27" -o -iname "*$videoType28" -o -iname "*$videoType29" \) -exec basename {} \; | sed 's/\.[^.]*$/-thumb./gm') <(find "${libraryPathArray[i]//,/}" -type f \( -iname "*$fileType2*" \) | grep -Ei ".jpg|.jpeg|.png|.svg|.webp" - ) | sed 's/\(.*\)/"\1"/g' | xargs -t rm -vf >> $scriptTempLogLocation
                 fi
             done
 
