@@ -10,6 +10,8 @@ todaysLog=$(date +"log_%Y%m%d.log")
 ## TODO: Add support for checking when collections are removed
 ## This is the string to check for: [07:53:38] [INF] [10] Emby.Server.Implementations.ScheduledTasks.Tasks.CleanupCollectionAndPlaylistPathsTask: Item in TYPE-MOON (Nasuverse) cannot be found at /Anime/F/Fate-strange Fake [WEB]
 ## Rename this file too to reflect this new change.
+## The following works to retrieve collection items not found errors from the log. Make sure to replace the path to the log.
+## awk -F "splithere123" '{print $2}' <(grep -i "cleanupcollectionandplaylistpathstask" /config/log/log_20240623.log | grep -i "item in" | grep -i "cannot be found at" | sed 's/Task: Item/Task: splithere123 Item/g' | sed 's/Item in/Item in the/g' | sed 's/cannot be found at/collection.xml cannot be found:/g') | sort | uniq |  sed 's/ Item/Item/g'
 
 if [ "$1" == "-c" ]; then
     echo "Delete the \"chapter-error-log.txt\" file?"
