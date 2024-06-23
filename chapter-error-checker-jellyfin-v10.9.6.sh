@@ -7,6 +7,10 @@ scriptTempLogLocation=test/temp-chapter-error-log.txt
 pathToJellyLogs="path/to/file" ## Make sure to not end this path with a foward slash "/"
 todaysLog=$(date +"log_%Y%m%d.log")
 
+## TODO: Add support for checking when collections are removed
+## This is the string to check for: [07:53:38] [INF] [10] Emby.Server.Implementations.ScheduledTasks.Tasks.CleanupCollectionAndPlaylistPathsTask: Item in TYPE-MOON (Nasuverse) cannot be found at /Anime/F/Fate-strange Fake [WEB]
+## Rename this file too to reflect this new change.
+
 if [ "$1" == "-c" ]; then
     echo "Delete the \"chapter-error-log.txt\" file?"
     echo "---Enter [Y] to Proceed---"
