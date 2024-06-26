@@ -35,7 +35,7 @@ elif [ "$1" == "-h" ]; then
     echo "" >> $scriptTempLogLocation
     echo "" >> $scriptTempLogLocation
 
-    if [[ $(wc -l < $scriptTempLogLocation) -gt 7 ]]; then
+    if [[ $(wc -l < $scriptTempLogLocation) -gt 8 ]]; then
         cat $scriptTempLogLocation >> $scriptLogLocation
         cat $scriptTempLogLocation
     fi
@@ -70,7 +70,7 @@ else
         echo "" >> $scriptTempLogLocation
         echo "" >> $scriptTempLogLocation
 
-        if [[ $(wc -l < $scriptTempLogLocation) -gt 7 ]]; then
+        if [[ $(wc -l < $scriptTempLogLocation) -gt 8 ]]; then
             cat $scriptTempLogLocation >> $scriptLogLocation
             echo ""
             cat $scriptTempLogLocation
