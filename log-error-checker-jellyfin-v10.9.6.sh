@@ -29,7 +29,7 @@ elif [ "$1" == "-h" ]; then
 
     echo "-- Errors Found in Yesterday's Logfile --" >> $scriptTempLogLocation
     echo "" >> $scriptTempLogLocation
-    awk '{print $0}' <(awk -F "|" '{print $2}' <(grep -i "stopping chapter extraction for" $fullPathToYesterdaysJellyLogs | sed 's/stopping chapter extraction for \"/stopping chapter extraction for \|Chapter extraction stopped for\"/g')) | sort | uniq >> $scriptTempLogLocation
+    #awk '{print $0}' <(awk -F "|" '{print $2}' <(grep -i "stopping chapter extraction for" $fullPathToYesterdaysJellyLogs | sed 's/stopping chapter extraction for \"/stopping chapter extraction for \|Chapter extraction stopped for\"/g')) | sort | uniq >> $scriptTempLogLocation
     awk -F "splithere123" '{print $2}' <(grep -i "cleanupcollectionandplaylistpathstask" $fullPathToYesterdaysJellyLogs | grep -i "item in" | grep -i "cannot be found at" | sed 's/Task: Item/Task: splithere123Item/g' | sed 's/Item in/Item in the/g' | sed 's/cannot be found at/collection.xml cannot be found:/g') | sort | uniq >> $scriptTempLogLocation
     awk -F "123splithere123" '{print $2}' <(grep -i "creating season \"season unknown\"" $fullPathToYesterdaysJellyLogs | sed 's/SeriesMetadataService: Creating/SeriesMetadataService: 123splithere123Creating/g') | sort | uniq >> $scriptTempLogLocation
 
@@ -65,7 +65,7 @@ else
 
         echo "-- Errors Found in Yesterday's Logfile --" >> $scriptTempLogLocation
         echo "" >> $scriptTempLogLocation
-        awk -F "|" '{print $2}' <(grep -i "stopping chapter extraction for" $fullPathToYesterdaysJellyLogs | sed 's/stopping chapter extraction for \"/stopping chapter extraction for \|Chapter extraction stopped for\"/g') | sort | uniq >> $scriptTempLogLocation
+        #awk -F "|" '{print $2}' <(grep -i "stopping chapter extraction for" $fullPathToYesterdaysJellyLogs | sed 's/stopping chapter extraction for \"/stopping chapter extraction for \|Chapter extraction stopped for\"/g') | sort | uniq >> $scriptTempLogLocation
         awk -F "splithere123" '{print $2}' <(grep -i "cleanupcollectionandplaylistpathstask" $fullPathToYesterdaysJellyLogs | grep -i "item in" | grep -i "cannot be found at" | sed 's/Task: Item/Task: splithere123Item/g' | sed 's/Item in/Item in the/g' | sed 's/cannot be found at/collection.xml cannot be found:/g') | sort | uniq >> $scriptTempLogLocation
         awk -F "123splithere123" '{print $2}' <(grep -i "creating season \"season unknown\"" $fullPathToYesterdaysJellyLogs | sed 's/SeriesMetadataService: Creating/SeriesMetadataService: 123splithere123Creating/g') | sort | uniq >> $scriptTempLogLocation
 
