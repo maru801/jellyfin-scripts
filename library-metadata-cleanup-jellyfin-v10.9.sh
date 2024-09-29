@@ -2,7 +2,7 @@
 
 ## Note: For all variables, use "quotes" when adding things with spaces or special characters
 serverName="YourServerName"
-serverVersion=10.9.6
+serverVersion=10.9
 
 #######################################################################################
 ######################################## Paths ########################################
