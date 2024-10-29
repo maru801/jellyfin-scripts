@@ -109,7 +109,7 @@ libraryNameArray=(
 fileType1=.nfo
 fileType2=-thumb  ## Make sure to not add anything else after "thumb". This needs to match with anything containing "-thumb", not just "*-thumb.*", but "*-thumb*".
 
-cleanLeftOverTrickplayFolders=1  ## 0=no 1=yes
+cleanLeftOverTrickplayFolders=0  ## 0=no 1=yes
 ######################################################################
 
 ################################
