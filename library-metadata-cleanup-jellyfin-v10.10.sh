@@ -9,7 +9,7 @@ serverVersion=10.10
 ## Removal Log Location Info ##
 ## Filename doesn't matter for both permanent & temp removal logs ##
 ## Make sure other files in given path don't conflict with the filename you provide. ##
-scriptLogLocationPathOnly=test/
+scriptLogLocationPathOnly=test/ # Variable for path only, doesn't serve a purpose in the script
 scriptLogLocation=test/removed-log.txt
 scriptTempLogLocation=test/temp-removed-log.txt
 

@@ -5,11 +5,14 @@
 This script is meant to only be used on Jellyfin media libraries that also hold Jellyfin's metadata.
 I recommend testing this script on a small copy of your actual libraries first before using it on whole libraries.
 
-This script works with Jellyfin v10.10
+This script works with Jellyfin v10.10.
 If any changes are made to Jellyfin that change how metadata is automatically named, this script might need to be remade/reworked.
 
 Run the script with the "-h" flag to skip all verbose output and only print out errors.
 You can enable or disable leftover trickplay deletion by editing line 117.
+
+This script creates/stores a log for all deletions.
+Modify lines 13 & 14 to set your desired deletion log location.
 
 This will find and delete all left-over .nfo and jpg thumbnails that no longer have an accompanying video file.
 The script will loop through libraries looking for leftover metadata. Modify the path name variables on top of the script to get it working for your server.
