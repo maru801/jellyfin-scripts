@@ -55,6 +55,6 @@ You will have to modify the script to ignore other jpg metadata that you want to
 
 Notes on why I created this:
 
-- I manually delete files a lot on my server. I sometimes forget to delete the related metadata files that Jellyfin and Jellyscrub place in my libraries.
+- I manually delete files a lot on my server. I sometimes forget to delete the related metadata files that Jellyfin places in my libraries.
 - These left-over metadata files are useless, take up space, and stick around forever unless I find and delete them.
 - I created this to run on my TrueNAS server, thus why I set the script to ignore paths with ".zfs".
