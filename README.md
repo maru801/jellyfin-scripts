@@ -15,7 +15,7 @@ This will find and delete all left-over .nfo and jpg thumbnails that no longer h
 The script will loop through libraries looking for leftover metadata. Modify the path name variables on top of the script to get it working for your server.
 
 By default, this script has 10 spots to enable library paths to be cleaned. If you need more, you'll need to add more variables to hold the new library paths, then you'll need to modify the library arrays to include the new variables.
-It should be straight-foward what you need to copy and paste to add more libraries by looking at the lines of code from 6-104.
+It should be straight-foward what you need to copy and paste to add more libraries by looking at the lines of code from 7-105.
 
 If you want to modify the script logic, keep in mind the script has two locations for doing the main logic of a single library.
 This is due to having an if-statement check if "-h" was passed as a flag to silence the output of the script (useful for running when no output is desired, warnings will still be outputed however).
