@@ -1,10 +1,11 @@
 # jellyfin-scripts
 
-### -- library-metadata-cleanup-jellyfin-v10.9.2.sh --
+## -- library-metadata-cleanup-jellyfin-v10.10.sh --
+
 This script is meant to only be used on Jellyfin media libraries that also hold Jellyfin's metadata.
 I recommend testing this script on a small copy of your actual libraries first before using it on whole libraries.
 
-This script works with Jellyfin v10.9.2.
+This script works with Jellyfin v10.10
 If any changes are made to Jellyfin that change how metadata is automatically named, this script might need to be remade/reworked.
 
 This will find and delete all left-over .nfo and jpg thumbnails that no longer have an accompanying video file.
@@ -22,36 +23,37 @@ The script shouldn't delete anything that's not a .jpg or extra .nfo file. Howev
 All deletions are sent to a log as described in the script.
 
 Also, don't forget to link the correct paths in the script.
-### THIS SCRIPT WILL ERASE ALL JPG FILES THAT DON'T MATCH A VIDEO FILE NAME IN THE SAME LINKED DIRECTORIES.
+
+### THIS SCRIPT WILL ERASE ALL JPG FILES THAT DON'T MATCH A VIDEO FILE NAME IN THE SAME LINKED DIRECTORIES
+
 Don't lose your stored images by accident.
 
 The following are files that are excluded from being deleted:
-- folder.jpg
-- banner.jpg
-- backdrop.jpg
-- logo.jpg
-- cover.jpg
-- landscape.jpg
+
 - tvshow.nfo
 - season.nfo
 - movie.nfo
 - VIDEO_TS.nfo
 - artist.nfo
 - album.nfo
+- folder.jpg
+- banner.jpg
+- backdrop.jpg
+- logo.jpg
+- cover.jpg
+- landscape.jpg
+- "-poster.*"
 
 If your server has extra jpg files that are used for metadata purposes that don't match with this list, they will be deleted.
 You will have to modify the script to ignore other jpg metadata that you want to keep.
 
 Note:
+
 - I separated file types from the logic and into variables to make editing the script easier. Just creating a new variable for your new metadata won't be enough. You need to modifiy the actual logic to include your new variable.
 
 The main lines that contain the logic to edit the libraries are located at line 196 (for -h flag, not-verbose output), and line 303 (for all other verbose output).
 
 Notes on why I created this:
-  - I manually delete files a lot on my server. I sometimes forget to delete the related metadata files that Jellyfin and Jellyscrub place in my libraries.
-  - These left-over metadata files are useless, take up space, and stick around forever unless I find and delete them.
 
-
-### -- chapter-error-checker-jellyfin-v10.9.2.sh --
-This is a simple script that checks the current daily Jellyfin log to determine if a chapter image generation error occured at or before the time the script was ran.
-Found chapter image generation errors are reported to standard output.
+- I manually delete files a lot on my server. I sometimes forget to delete the related metadata files that Jellyfin and Jellyscrub place in my libraries.
+- These left-over metadata files are useless, take up space, and stick around forever unless I find and delete them.

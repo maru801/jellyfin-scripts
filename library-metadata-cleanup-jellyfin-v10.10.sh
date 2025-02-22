@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## Note: For all variables, use "quotes" when adding things with spaces or special characters
-serverName="YourServerName"
+serverName="YourServerName" # These two variables are just for fun and don't serve a purpose in the script
 serverVersion=10.10
 
 #######################################################################################
@@ -17,9 +17,9 @@ scriptTempLogLocation=test/temp-removed-log.txt
 ## Enable libraries by setting to "true" ##
 ## Use absolute paths, or relative paths to where this script will be stored ##
 
-library1="test1"             ## Path to library (enclose in "quotes" to avoid issues with spaces and special characters)
+library1="/path/to/test-library"             ## Path to library (enclose in "quotes" to avoid issues with spaces and special characters)
 library1Enabled=false        ## enable with "true" (all lower-case)
-library1Name="Test1 Library" ## Name of your library
+library1Name="Test1 Library" ## Name of your library, doesn't affect script
 
 library2="test2"
 library2Enabled=false
@@ -114,7 +114,7 @@ ignoreFilePathsWithThis=".zfs"
 fileType1=.nfo
 fileType2=-thumb  ## Make sure to not add anything else after "thumb". This needs to match with anything containing "-thumb", not just "*-thumb.*", but "*-thumb*".
 
-cleanLeftOverTrickplayFolders=0  ## 0=no 1=yes
+cleanLeftOverTrickplayFolders=1  ## 0=no 1=yes
 ######################################################################
 
 ################################
