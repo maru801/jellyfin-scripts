@@ -8,6 +8,9 @@ I recommend testing this script on a small copy of your actual libraries first b
 This script works with Jellyfin v10.10
 If any changes are made to Jellyfin that change how metadata is automatically named, this script might need to be remade/reworked.
 
+Run the script with the "-h" flag to skip all verbose output and only print out errors.
+You can enable or disable leftover trickplay deletion by editing line 117.
+
 This will find and delete all left-over .nfo and jpg thumbnails that no longer have an accompanying video file.
 The script will loop through libraries looking for leftover metadata. Modify the path name variables on top of the script to get it working for your server.
 
@@ -21,12 +24,15 @@ Change both if you're modyfing one to make the script consistent with all the bu
 The script shouldn't delete anything that's not a .jpg or extra .nfo file. However, just in case any other file type gets deleted, the script will output that an "incorrect" file has been deleted and won't work until the situation has been dealt with.
 
 All deletions are sent to a log as described in the script.
+If a video file is deleted due to a fault in this script, it will get marked down in the deletion log.
+The script will refuse to run until the deletion log is cleared/deleted.
+This is to avoid further loses of any more video media until the cause is figured out.
 
-Also, don't forget to link the correct paths in the script.
+Don't forget to link the correct paths in the script.
 
-### THIS SCRIPT WILL ERASE ALL JPG FILES THAT DON'T MATCH A VIDEO FILE NAME IN THE SAME LINKED DIRECTORIES
+### THIS SCRIPT WILL ERASE ALL JPG, NFO, & TRICKPLAY FILES THAT DON'T MATCH A VIDEO FILE NAME IN THE SAME LINKED DIRECTORIES
 
-Don't lose your stored images by accident.
+Don't lose your stored images and other metadata files by accident.
 
 The following are files that are excluded from being deleted:
 
@@ -47,13 +53,8 @@ The following are files that are excluded from being deleted:
 If your server has extra jpg files that are used for metadata purposes that don't match with this list, they will be deleted.
 You will have to modify the script to ignore other jpg metadata that you want to keep.
 
-Note:
-
-- I separated file types from the logic and into variables to make editing the script easier. Just creating a new variable for your new metadata won't be enough. You need to modifiy the actual logic to include your new variable.
-
-The main lines that contain the logic to edit the libraries are located at line 196 (for -h flag, not-verbose output), and line 303 (for all other verbose output).
-
 Notes on why I created this:
 
 - I manually delete files a lot on my server. I sometimes forget to delete the related metadata files that Jellyfin and Jellyscrub place in my libraries.
 - These left-over metadata files are useless, take up space, and stick around forever unless I find and delete them.
+- I created this to run on my TrueNAS server, thus why I set the script to ignore paths with ".zfs".
