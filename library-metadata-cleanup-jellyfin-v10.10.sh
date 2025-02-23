@@ -125,7 +125,7 @@ ignoreFile3="movie.nfo" ## New addition for v10.9, all movies will have their .n
 ignoreFile4=VIDEO_TS.nfo
 ignoreFile5=artist.nfo ## Music library metadata
 ignoreFile6=album.nfo ## Music library metadata
-## Note: The bottom variables are not used with this script as of version 10.9.6, I'm keeping theme declared here in case their needed later on.
+## Note: The bottom variables are not used with this script as of version 10.9.6, I'm keeping theme declared here in case they're needed later on.
 ignoreFile7="folder.*"
 ignoreFile8="banner.*"
 ignoreFile9="backdrop.*"

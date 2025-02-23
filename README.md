@@ -8,6 +8,8 @@ I recommend testing this script on a small copy of your actual libraries first b
 This script works with Jellyfin v10.10.
 If any changes are made to Jellyfin that change how metadata is automatically named, this script might need to be remade/reworked.
 
+Edit lines 20-58 to add the paths to your libraries for the script.
+
 Run the script with the "-h" flag to skip all verbose output and only print out errors.
 You can enable or disable leftover trickplay deletion by editing line 117.
 
