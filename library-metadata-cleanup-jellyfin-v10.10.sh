@@ -2,7 +2,7 @@
 
 ## Note: For all variables, use "quotes" when adding things with spaces or special characters
 serverName="YourServerName" # These two variables are just for fun and don't serve a purpose in the script
-serverVersion=10.10
+serverVersion=10.11
 
 #######################################################################################
 ######################################## Paths ########################################
